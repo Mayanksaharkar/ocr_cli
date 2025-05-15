@@ -17,6 +17,20 @@ def extract_text(image_path: str, lang: str = "eng") -> str:
         return f"[red]Error:[/red] {e}"
 
 
+
+def preview_image(image_path: str):
+    try:
+        img = Image.open(image_path)
+        print(f"\n[bold blue]🖼️  Image Preview:[/bold blue]")
+        print(f"File     : [green]{Path(image_path).name}[/green]")
+        print(f"Format   : [cyan]{img.format}[/cyan]")
+        print(f"Mode     : {img.mode}")
+        print(f"Size     : {img.size[0]}x{img.size[1]}")
+    except Exception as e:
+        print(f"[red]❗ Failed to preview image:[/red] {e}")
+
+
+
 @app.command()
 def main():
     print("[bold cyan]🧠 OCR CLI Tool[/bold cyan]\n")
@@ -41,6 +55,8 @@ def main():
         print(f"[red]❗ File not found:[/red] {image_path}")
         raise typer.Exit()
 
+    preview_image(image_path)
+    
     text = extract_text(image_path)
 
     if action.startswith("📄"):
@@ -59,4 +75,3 @@ if __name__ == "__main__":
         app()    
     except KeyboardInterrupt:
         print("\n[bold red]❌ Interrupted by user. Exiting...[/bold red]")
-
