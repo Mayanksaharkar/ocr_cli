@@ -36,7 +36,7 @@ def main():
         raise typer.Exit()
 
     image_path = questionary.path("Enter the image path:").ask()
-
+    image_path = image_path.strip('"') 
     if not image_path or not Path(image_path).is_file():
         print(f"[red]❗ File not found:[/red] {image_path}")
         raise typer.Exit()
