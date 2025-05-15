@@ -1,0 +1,21 @@
+[project]
+name = "ocr_cli"
+version = "0.1.0"
+description = "A simple OCR CLI tool using Tesseract"
+authors = [{ name="Mayank Saharkar", email="mayanksaharkar@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "typer[all]",
+    "questionary",
+    "rich",
+    "pillow",
+    "pytesseract"
+]
+
+[project.scripts]
+ocr_cli = "ocr_cli.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
